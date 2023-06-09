@@ -24,17 +24,15 @@ public class Menu implements Serializable {
     @Column(name = "price")
     private long price;
 
-
-
     @Column(name = "category_name")
     private String categoryName;
 
     @Column(name = "food_name")
     private String foodName;
 
-
     @OneToOne(mappedBy = "menu", fetch = FetchType.LAZY)
     @JsonIgnore
+    @Transient
     private Offers offers;
 
     @ManyToOne

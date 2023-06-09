@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -23,7 +24,6 @@ public class OffersController {
     private final MenuRepository menuRepository;
 
 
-
     private final OffersRepository repository;
 
     @GetMapping
@@ -32,9 +32,11 @@ public class OffersController {
     }
 
     @PostMapping
-    public void offers(@RequestBody List<OrderDto> orderDtoList) {
+    public List<Offers> offers(@RequestBody List<OrderDto> orderDtoList) {
+        List<Offers> newOffers = new ArrayList<>();
         for (OrderDto orderDto : orderDtoList) {
             Optional<Menu> menu = menuRepository.findById(orderDto.getMenuId());
+            log.info(String.valueOf(orderDto.getMenuId()));
             Offers offers = new Offers();
             if (menu.isPresent()) {
                 offers.setName(menu.get().getFoodName());
@@ -43,10 +45,8 @@ public class OffersController {
                 offers.setOrderNumber(orderDto.getOrderNumber());
             }
             offers.setAmount(orderDto.getAmount());
-            repository.save(offers);
-
-
+            newOffers.add(offers);
         }
-
+        return repository.saveAll(newOffers);
     }
 }

@@ -32,7 +32,7 @@ public class Offers implements Serializable {
     private Status status;
 
     @OneToOne
-    @JoinColumn(name = "menu_id")
+    @JoinColumn(name = "menu_id",unique = false)
     private Menu menu;
 
 
