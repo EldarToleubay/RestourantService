@@ -6,6 +6,7 @@ import com.example.demo.model.Offers;
 import com.example.demo.model.common.Status;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.OffersRepository;
+import com.example.demo.service.OffersService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -23,28 +24,15 @@ public class OffersController {
 
 
     private final OffersRepository repository;
+    private final OffersService offersService;
 
     @GetMapping
     public List<Offers> offers() {
-        return repository.findAll();
+        return offersService.offers();
     }
 
     @PostMapping
     public List<Offers> offers(@RequestBody List<OrderDto> orderDtoList) {
-        List<Offers> newOffers = new ArrayList<>();
-        for (OrderDto orderDto : orderDtoList) {
-            Optional<Menu> menu = menuRepository.findById(orderDto.getMenuId());
-            log.info(String.valueOf(orderDto.getMenuId()));
-            Offers offers = new Offers();
-            if (menu.isPresent()) {
-                offers.setName(menu.get().getFoodName());
-                offers.setMenu(menu.get());
-                offers.setStatus(Status.WAITING);
-                offers.setOrderNumber(orderDto.getOrderNumber());
-            }
-            offers.setAmount(orderDto.getAmount());
-            newOffers.add(offers);
-        }
-        return repository.saveAll(newOffers);
+        return offersService.createOffers(orderDtoList);
     }
 }

@@ -5,6 +5,7 @@ import com.example.demo.model.Foods;
 import com.example.demo.model.Menu;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.MenuRepository;
+import com.example.demo.service.MenuService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -19,30 +20,16 @@ import java.util.List;
 public class MenuController {
     private final MenuRepository repository;
     private final CategoryRepository categoryRepository;
+    private final MenuService menuService;
 
     @GetMapping
-    public List<Menu> getFood() {
-        return repository.findAll();
+    public List<Menu> getMenu() {
+        return menuService.getMenu();
     }
 
 
     @PostMapping
-    public List<Menu> createFood() {
-        List<Category> allCategories = categoryRepository.findAll();
-        List<Menu> menuItems = new ArrayList<>();
-        for (Category category : allCategories) {
-            List<Foods> foods = category.getFoods();
-            for (Foods food : foods) {
-                Menu menu = new Menu();
-                menu.setCategoryName(category.getName());
-                menu.setFoodName(food.getName());
-                menu.setPrice(food.getPrice());
-                menu.setDescription(food.getDescription());
-                menu.setCategory(category);
-                menu = repository.save(menu);
-                menuItems.add(menu);
-            }
-        }
-        return menuItems;
+    public List<Menu> refreshMenu() {
+        return menuService.refreshMenu();
     }
 }
