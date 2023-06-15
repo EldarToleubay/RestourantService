@@ -6,6 +6,7 @@ import com.example.demo.model.Offers;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.FoodRepository;
 import com.example.demo.repository.OffersRepository;
+import com.example.demo.service.CategoryService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -23,18 +24,17 @@ public class CategoryController {
 
     private final FoodRepository foodRepository;
     private final CategoryRepository repository;
+    private final CategoryService categoryService;
 
 
     @GetMapping
     public List<Category> categories(){
-        System.out.println(repository.findAll());
-        return repository.findAll();
+        return categoryService.categories();
     }
 
     @PostMapping
     public Category createCategories(@RequestBody Category category){
-        category = repository.save(category);
-        return category;
+        return categoryService.createCategories(category);
     }
 
 
