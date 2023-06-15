@@ -1,12 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.Dto.OrderDto;
+import com.example.demo.dto.OrderDto;
 import com.example.demo.model.Menu;
 import com.example.demo.model.Offers;
 import com.example.demo.model.common.Status;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.OffersRepository;
-import jakarta.persistence.criteria.Order;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/offers")

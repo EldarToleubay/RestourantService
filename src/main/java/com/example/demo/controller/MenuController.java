@@ -1,11 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.Dto.FoodsDto;
-import com.example.demo.Dto.MenuDto;
 import com.example.demo.model.Category;
 import com.example.demo.model.Foods;
 import com.example.demo.model.Menu;
-import com.example.demo.model.Offers;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.MenuRepository;
 import lombok.Data;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/menus")

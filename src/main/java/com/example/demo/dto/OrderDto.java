@@ -1,9 +1,6 @@
-package com.example.demo.Dto;
+package com.example.demo.dto;
 
-import com.example.demo.model.Menu;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class OrderDto {
