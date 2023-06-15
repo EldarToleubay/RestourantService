@@ -1,16 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Category;
-import com.example.demo.model.Foods;
-import com.example.demo.model.Offers;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.FoodRepository;
-import com.example.demo.repository.OffersRepository;
 import com.example.demo.service.CategoryService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

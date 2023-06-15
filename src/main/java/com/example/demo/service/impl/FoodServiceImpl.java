@@ -7,7 +7,6 @@ import com.example.demo.repository.FoodRepository;
 import com.example.demo.service.FoodService;
 import lombok.Data;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
