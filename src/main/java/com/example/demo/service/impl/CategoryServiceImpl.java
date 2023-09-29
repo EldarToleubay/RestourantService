@@ -14,6 +14,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     @Override
     public List<Category> categories() {
+        //test
         System.out.println(categoryRepository.findAll());
         return categoryRepository.findAll();
     }
